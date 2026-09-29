@@ -1,0 +1,498 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-image: radial-gradient(circle at 1px 1px, rgba(32, 36, 29, 0.06) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  ::selection {
+    background-color: rgba(184, 147, 90, 0.35);
+  }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid #b8935a;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-fraunces);
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-xl px-6 py-20 sm:px-10;
+  }
+
+  .eyebrow {
+    @apply font-body text-xs uppercase tracking-[0.35em] text-emerald/70;
+  }
+
+  .hairline {
+    @apply h-px w-16 bg-gold/60;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-emerald px-7 py-3
+      font-body text-sm font-medium tracking-wide text-paper transition-all duration-300
+      hover:bg-emerald-dark hover:shadow-lg hover:shadow-emerald/20 active:scale-[0.98]
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-emerald/30
+      bg-transparent px-7 py-3 font-body text-sm font-medium tracking-wide text-emerald
+      transition-all duration-300 hover:border-emerald hover:bg-emerald/5 active:scale-[0.98];
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-emerald/20 bg-paper/60 px-4 py-3 font-body text-sm
+      text-ink placeholder:text-ink/40 transition-colors duration-200 focus:border-gold
+      focus:bg-white/60 focus:outline-none;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ========================================
+   WEDDING BACKGROUND
+======================================== */
+
+.wedding-background {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(218, 190, 120, 0.25),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(31, 78, 66, 0.18),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #fffdf7 0%,
+      #f5efe1 50%,
+      #eef5f1 100%
+    );
+}
+@keyframes pinkFlowerSway {
+  0%, 100% {
+    transform: rotate(-3deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(3deg) scale(1.04);
+  }
+}
+
+@keyframes pinkPetalFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(50vh) translateX(35px) rotate(180deg);
+  }
+
+  100% {
+    transform: translateY(115vh) translateX(-30px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.pink-lily {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  animation: pinkFlowerSway 7s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.lily-petal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 32px;
+  height: 70px;
+  transform-origin: 50% 100%;
+  border-radius: 80% 80% 35% 35%;
+  background:
+    linear-gradient(
+      to top,
+      #f6a1bd 0%,
+      #ffc7d9 45%,
+      #fff3f7 100%
+    );
+  box-shadow:
+    inset 0 0 8px rgba(218, 91, 135, 0.18),
+    0 5px 15px rgba(218, 91, 135, 0.16);
+}
+
+.lily-petal:nth-child(1) {
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.lily-petal:nth-child(2) {
+  transform: translate(-50%, -100%) rotate(60deg);
+}
+
+.lily-petal:nth-child(3) {
+  transform: translate(-50%, -100%) rotate(120deg);
+}
+
+.lily-petal:nth-child(4) {
+  transform: translate(-50%, -100%) rotate(180deg);
+}
+
+.lily-petal:nth-child(5) {
+  transform: translate(-50%, -100%) rotate(240deg);
+}
+
+.lily-petal:nth-child(6) {
+  transform: translate(-50%, -100%) rotate(300deg);
+}
+
+.lily-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #f3c95f;
+  box-shadow:
+    0 0 0 5px rgba(255, 225, 130, 0.25),
+    0 0 18px rgba(241, 193, 72, 0.45);
+  z-index: 5;
+}
+
+.lily-stamen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 35px;
+  transform-origin: bottom center;
+  background: #d8aa46;
+  border-radius: 999px;
+  z-index: 6;
+}
+
+.lily-stamen::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #c79632;
+}
+
+.lily-pink-spot {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  width: 6px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(190, 68, 111, 0.32);
+  z-index: 3;
+}
+@keyframes floralSway {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes petalFloat {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(50vh) translateX(35px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(115vh) translateX(-35px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleWedding {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+.wedding-lily {
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  animation: floralSway 6s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.wedding-petal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 76px;
+  transform-origin: 50% 100%;
+  border-radius: 80% 80% 35% 35%;
+  background:
+    linear-gradient(
+      145deg,
+      #fff7fa 0%,
+      #ffd6e4 38%,
+      #f6a4bf 72%,
+      #df6f9a 100%
+    );
+  box-shadow:
+    inset 0 0 8px rgba(190, 60, 105, 0.18),
+    0 5px 18px rgba(190, 70, 110, 0.15);
+}
+
+.wedding-petal:nth-child(1) {
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.wedding-petal:nth-child(2) {
+  transform: translate(-50%, -100%) rotate(60deg);
+}
+
+.wedding-petal:nth-child(3) {
+  transform: translate(-50%, -100%) rotate(120deg);
+}
+
+.wedding-petal:nth-child(4) {
+  transform: translate(-50%, -100%) rotate(180deg);
+}
+
+.wedding-petal:nth-child(5) {
+  transform: translate(-50%, -100%) rotate(240deg);
+}
+
+.wedding-petal:nth-child(6) {
+  transform: translate(-50%, -100%) rotate(300deg);
+}
+
+.wedding-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      #fff3b8 0%,
+      #f4cd62 45%,
+      #c99a38 100%
+    );
+  box-shadow:
+    0 0 0 5px rgba(246, 207, 101, 0.15),
+    0 0 20px rgba(240, 190, 70, 0.45);
+  z-index: 5;
+}
+
+.wedding-small-flower {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  animation: floralSway 5s ease-in-out infinite;
+}
+
+.small-petal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 21px;
+  height: 42px;
+  transform-origin: 50% 100%;
+  border-radius: 80% 80% 35% 35%;
+  background:
+    linear-gradient(
+      to top,
+      #e986aa,
+      #ffc4d8,
+      #fff4f8
+    );
+}
+
+.small-petal:nth-child(1) {
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.small-petal:nth-child(2) {
+  transform: translate(-50%, -100%) rotate(72deg);
+}
+
+.small-petal:nth-child(3) {
+  transform: translate(-50%, -100%) rotate(144deg);
+}
+
+.small-petal:nth-child(4) {
+  transform: translate(-50%, -100%) rotate(216deg);
+}
+
+.small-petal:nth-child(5) {
+  transform: translate(-50%, -100%) rotate(288deg);
+}
+
+.small-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #f0c95c;
+  z-index: 5;
+}
+
+.wedding-leaf {
+  position: absolute;
+  width: 24px;
+  height: 55px;
+  border-radius: 100% 0 100% 0;
+  background:
+    linear-gradient(
+      135deg,
+      #416d53,
+      #88a98a
+    );
+  box-shadow: 0 4px 12px rgba(45, 90, 60, 0.15);
+  transform-origin: bottom center;
+}
+
+.wedding-vine {
+  position: absolute;
+  border: 3px solid rgba(61, 105, 78, 0.38);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+}
+
+.falling-pink-petal {
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  top: -30px;
+  width: 12px;
+  height: 18px;
+  border-radius: 70% 30% 70% 30%;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 218, 231, 0.95),
+      rgba(226, 105, 149, 0.75)
+    );
+  box-shadow: 0 2px 8px rgba(180, 70, 110, 0.15);
+  animation: petalFloat linear infinite;
+}
+
+.wedding-sparkle {
+  animation: sparkleWedding 3s ease-in-out infinite;
+}
+/* =====================================================
+   POSISI DEKORASI — TETAP DI BELAKANG KONTEN
+   ===================================================== */
+
+.pink-lily,
+.wedding-lily,
+.wedding-small-flower,
+.wedding-leaf,
+.wedding-vine,
+.wedding-sparkle,
+.falling-pink-petal {
+  pointer-events: none;
+  z-index: 0;
+}
+.pink-petal {
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Konten utama selalu berada di atas dekorasi */
+section > .relative.z-10 {
+  position: relative;
+  z-index: 10;
+}
+/* =========================================================
+   FORCE LIGHT THEME
+   Website tidak mengikuti Dark Mode perangkat
+========================================================= */
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  color-scheme: light;
+  background: #fffdf7;
+}
+
+body {
+  background: #fffdf7;
+  color: #1f2f29;
+}
+
+/* Mencegah browser mengubah warna input/button */
+input,
+textarea,
+select,
+button {
+  color-scheme: light;
+}
+
+/* Mencegah autofill browser mengubah tampilan */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #1f2f29;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.8) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
